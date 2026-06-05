@@ -1,0 +1,277 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-holo: var(--holo);
+  --color-ocean: var(--ocean);
+  --color-sand: var(--sand);
+  --color-sunset: var(--sunset);
+  --font-display: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-hand: "Caveat", "Bradley Hand", cursive;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+:root {
+  --radius: 1.25rem;
+
+  /* Color psychology system:
+     - Cream background = warmth, accessibility, breathing room
+     - Sunset coral primary = courage, energy, action (drives the "apply" reflex)
+     - Deep aubergine foreground = trust, depth, premium (anchors the page)
+     - Magenta accent = creativity, community, spark
+  */
+  --background: oklch(0.972 0.025 75);                /* warm cream */
+  --foreground: oklch(0.23 0.08 350);                 /* deep aubergine */
+
+  --card: oklch(0.995 0.012 75);
+  --card-foreground: oklch(0.23 0.08 350);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.23 0.08 350);
+
+  --primary: oklch(0.68 0.22 32);                     /* bold sunset orange */
+  --primary-foreground: oklch(0.99 0.01 75);
+  --secondary: oklch(0.94 0.05 70);                   /* soft peach */
+  --secondary-foreground: oklch(0.25 0.09 350);
+  --muted: oklch(0.95 0.025 70);
+  --muted-foreground: oklch(0.42 0.08 350);
+  --accent: oklch(0.65 0.22 350);                     /* hot magenta */
+  --accent-foreground: oklch(0.99 0.01 75);
+  --destructive: oklch(0.6 0.22 25);
+  --destructive-foreground: oklch(0.99 0 0);
+  --border: oklch(0.82 0.05 30 / 0.6);
+  --input: oklch(0.92 0.03 50);
+  --ring: oklch(0.68 0.22 32);
+
+  --sunset: oklch(0.76 0.21 35);
+  --ocean: oklch(0.7 0.15 320);
+  --sand: oklch(0.94 0.05 70);
+  --holo: oklch(0.78 0.18 350);
+  --aubergine: oklch(0.23 0.08 350);
+
+  --gradient-sunset: linear-gradient(135deg, oklch(0.78 0.22 40) 0%, oklch(0.7 0.23 15) 50%, oklch(0.55 0.2 340) 100%);
+  --gradient-holo: linear-gradient(135deg, oklch(0.78 0.18 350) 0%, oklch(0.78 0.2 30) 50%, oklch(0.78 0.16 60) 100%);
+  --gradient-coral: linear-gradient(135deg, oklch(0.74 0.22 38) 0%, oklch(0.64 0.24 12) 100%);
+  --gradient-cream: linear-gradient(180deg, oklch(0.978 0.025 75) 0%, oklch(0.95 0.04 50) 100%);
+
+  --shadow-glow: 0 16px 50px -18px oklch(0.65 0.24 25 / 0.55);
+  --shadow-soft: 0 10px 30px -12px oklch(0.23 0.08 350 / 0.18);
+  --shadow-card: 0 1px 0 oklch(1 0 0 / 0.8) inset, 0 14px 32px -18px oklch(0.23 0.08 350 / 0.28);
+  --shadow-holo: 0 0 40px oklch(0.78 0.2 30 / 0.4), inset 0 1px 0 oklch(1 0 0 / 0.6);
+
+  /* sunset → dusk → twilight → bonfire night → dawn */
+  --sky-journey: linear-gradient(
+    180deg,
+    oklch(0.97 0.025 75) 0%,         /* cream (hero spill) */
+    oklch(0.92 0.07 55) 8%,          /* warm peach */
+    oklch(0.82 0.14 35) 20%,         /* sunset coral */
+    oklch(0.62 0.17 20) 36%,         /* dusk rose */
+    oklch(0.38 0.13 340) 52%,        /* twilight magenta */
+    oklch(0.22 0.09 290) 68%,        /* deep night indigo */
+    oklch(0.32 0.11 320) 84%,        /* pre-dawn violet */
+    oklch(0.78 0.13 55) 100%         /* dawn glow */
+  );
+
+  /* warm sunset wash — stays light-on-warm end to end (DoraDAO page) */
+  --sky-sunset: linear-gradient(
+    180deg,
+    oklch(0.975 0.025 75) 0%,
+    oklch(0.94 0.06 60) 18%,
+    oklch(0.88 0.11 45) 38%,
+    oklch(0.83 0.14 35) 58%,
+    oklch(0.88 0.10 50) 80%,
+    oklch(0.96 0.04 70) 100%
+  );
+}
+
+.dark {
+  --background: oklch(0.18 0.04 340);
+  --foreground: oklch(0.97 0.02 30);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 { font-family: var(--font-display); letter-spacing: -0.01em; }
+}
+
+@layer utilities {
+  .font-hand { font-family: var(--font-hand); }
+  .bg-sunset { background: var(--gradient-sunset); }
+  .bg-holo { background: var(--gradient-holo); }
+  .bg-coral { background: var(--gradient-coral); }
+  .bg-cream { background: var(--gradient-cream); }
+  .text-coral {
+    background: var(--gradient-coral);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .text-holo {
+    background: var(--gradient-holo);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .card-soft {
+    background: var(--card);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-card);
+    border-radius: var(--radius);
+  }
+  .pill {
+    background: oklch(0.99 0.01 75);
+    border: 1px solid var(--border);
+    border-radius: 9999px;
+  }
+  .glass {
+    background: oklch(1 0 0 / 0.6);
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    border: 1px solid oklch(1 0 0 / 0.7);
+    box-shadow: var(--shadow-soft);
+  }
+  .glass-holo {
+    background: linear-gradient(135deg, oklch(1 0 0 / 0.55), oklch(0.85 0.14 30 / 0.18));
+    backdrop-filter: blur(24px) saturate(160%);
+    -webkit-backdrop-filter: blur(24px) saturate(160%);
+    border: 1px solid oklch(1 0 0 / 0.6);
+    box-shadow: var(--shadow-holo);
+  }
+  .grid-lines {
+    background-image:
+      linear-gradient(to right, oklch(0.7 0.18 30 / 0.10) 1px, transparent 1px),
+      linear-gradient(to bottom, oklch(0.7 0.18 30 / 0.10) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+  .noise {
+    background-image: radial-gradient(oklch(0.4 0.1 30 / 0.06) 1px, transparent 1px);
+    background-size: 3px 3px;
+  }
+  .shadow-glow { box-shadow: var(--shadow-glow); }
+  .shadow-soft { box-shadow: var(--shadow-soft); }
+  .shadow-card { box-shadow: var(--shadow-card); }
+  .shadow-holo { box-shadow: var(--shadow-holo); }
+
+  .animate-float { animation: float 6s ease-in-out infinite; }
+  .animate-float-slow { animation: float 9s ease-in-out infinite; }
+  .animate-shimmer { animation: shimmer 8s linear infinite; background-size: 200% 200%; }
+  .animate-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
+  .animate-drift { animation: drift 14s ease-in-out infinite; }
+  .animate-marquee { animation: marquee 32s linear infinite; }
+  .animate-spin-slow { animation: spin 24s linear infinite; }
+  .animate-twinkle { animation: twinkle 3.5s ease-in-out infinite; }
+
+  /* The continuous sky behind the whole page */
+  .bg-journey { background: var(--sky-journey); }
+  .bg-sunset-wash { background: var(--sky-sunset); }
+
+  /* Glass panel tuned to read on any sky tint */
+  .chapter-glass {
+    background: linear-gradient(180deg, oklch(1 0 0 / 0.72), oklch(1 0 0 / 0.55));
+    backdrop-filter: blur(22px) saturate(140%);
+    -webkit-backdrop-filter: blur(22px) saturate(140%);
+    border: 1px solid oklch(1 0 0 / 0.55);
+    box-shadow:
+      0 1px 0 oklch(1 0 0 / 0.8) inset,
+      0 30px 80px -40px oklch(0.2 0.08 30 / 0.45);
+    border-radius: 2rem;
+  }
+  .chapter-glass-dark {
+    background: linear-gradient(180deg, oklch(0.18 0.04 290 / 0.55), oklch(0.14 0.06 320 / 0.7));
+    backdrop-filter: blur(22px) saturate(140%);
+    -webkit-backdrop-filter: blur(22px) saturate(140%);
+    border: 1px solid oklch(1 0 0 / 0.12);
+    box-shadow: 0 30px 80px -40px oklch(0 0 0 / 0.6);
+    border-radius: 2rem;
+    color: oklch(0.98 0.02 75);
+  }
+  .chapter-num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+  .horizon-line {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, oklch(1 0 0 / 0.5), transparent);
+  }
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.25; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.15); }
+}
+
+
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-18px) rotate(2deg); }
+}
+@keyframes drift {
+  0%, 100% { transform: translate(0,0) rotate(0deg); }
+  50% { transform: translate(20px,-25px) rotate(-3deg); }
+}
+@keyframes shimmer {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 30px oklch(0.78 0.18 340 / 0.4); }
+  50% { box-shadow: 0 0 60px oklch(0.78 0.18 340 / 0.75); }
+}
+
+/* Custom cursor trail dot */
+.cursor-dot {
+  position: fixed;
+  top: 0; left: 0;
+  width: 14px; height: 14px;
+  border-radius: 9999px;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: screen;
+  background: var(--gradient-holo);
+  filter: blur(2px);
+  transition: transform 0.08s linear, opacity 0.3s;
+}
