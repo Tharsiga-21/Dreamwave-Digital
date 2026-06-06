@@ -11,12 +11,12 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as VoicesRouteImport } from './routes/voices'
 import { Route as PastInitiativesRouteImport } from './routes/past-initiatives'
-import { Route as PartnerRouteImport } from './routes/partner'
 import { Route as Doradao1RouteImport } from './routes/doradao-1'
 import { Route as DoradaoRouteImport } from './routes/doradao'
 import { Route as ChaptersRouteImport } from './routes/chapters'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProgramsIndexRouteImport } from './routes/programs.index'
+import { Route as PartnerIndexRouteImport } from './routes/partner.index'
 import { Route as ProgramsW3mRouteImport } from './routes/programs.w3m'
 import { Route as ProgramsGwy26RouteImport } from './routes/programs.gwy-26'
 import { Route as ProgramsGwy25RouteImport } from './routes/programs.gwy-25'
@@ -35,11 +35,6 @@ const VoicesRoute = VoicesRouteImport.update({
 const PastInitiativesRoute = PastInitiativesRouteImport.update({
   id: '/past-initiatives',
   path: '/past-initiatives',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PartnerRoute = PartnerRouteImport.update({
-  id: '/partner',
-  path: '/partner',
   getParentRoute: () => rootRouteImport,
 } as any)
 const Doradao1Route = Doradao1RouteImport.update({
@@ -65,6 +60,11 @@ const IndexRoute = IndexRouteImport.update({
 const ProgramsIndexRoute = ProgramsIndexRouteImport.update({
   id: '/programs/',
   path: '/programs/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PartnerIndexRoute = PartnerIndexRouteImport.update({
+  id: '/partner/',
+  path: '/partner/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProgramsW3mRoute = ProgramsW3mRouteImport.update({
@@ -93,24 +93,24 @@ const ProgramsBuildspaceRoute = ProgramsBuildspaceRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const PartnerVolunteerRoute = PartnerVolunteerRouteImport.update({
-  id: '/volunteer',
-  path: '/volunteer',
-  getParentRoute: () => PartnerRoute,
+  id: '/partner/volunteer',
+  path: '/partner/volunteer',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const PartnerEcosystemRoute = PartnerEcosystemRouteImport.update({
-  id: '/ecosystem',
-  path: '/ecosystem',
-  getParentRoute: () => PartnerRoute,
+  id: '/partner/ecosystem',
+  path: '/partner/ecosystem',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const PartnerCsrRoute = PartnerCsrRouteImport.update({
-  id: '/csr',
-  path: '/csr',
-  getParentRoute: () => PartnerRoute,
+  id: '/partner/csr',
+  path: '/partner/csr',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const PartnerCorporateRoute = PartnerCorporateRouteImport.update({
-  id: '/corporate',
-  path: '/corporate',
-  getParentRoute: () => PartnerRoute,
+  id: '/partner/corporate',
+  path: '/partner/corporate',
+  getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -118,7 +118,6 @@ export interface FileRoutesByFullPath {
   '/chapters': typeof ChaptersRoute
   '/doradao': typeof DoradaoRoute
   '/doradao-1': typeof Doradao1Route
-  '/partner': typeof PartnerRouteWithChildren
   '/past-initiatives': typeof PastInitiativesRoute
   '/voices': typeof VoicesRoute
   '/partner/corporate': typeof PartnerCorporateRoute
@@ -130,6 +129,7 @@ export interface FileRoutesByFullPath {
   '/programs/gwy-25': typeof ProgramsGwy25Route
   '/programs/gwy-26': typeof ProgramsGwy26Route
   '/programs/w3m': typeof ProgramsW3mRoute
+  '/partner/': typeof PartnerIndexRoute
   '/programs/': typeof ProgramsIndexRoute
 }
 export interface FileRoutesByTo {
@@ -137,7 +137,6 @@ export interface FileRoutesByTo {
   '/chapters': typeof ChaptersRoute
   '/doradao': typeof DoradaoRoute
   '/doradao-1': typeof Doradao1Route
-  '/partner': typeof PartnerRouteWithChildren
   '/past-initiatives': typeof PastInitiativesRoute
   '/voices': typeof VoicesRoute
   '/partner/corporate': typeof PartnerCorporateRoute
@@ -149,6 +148,7 @@ export interface FileRoutesByTo {
   '/programs/gwy-25': typeof ProgramsGwy25Route
   '/programs/gwy-26': typeof ProgramsGwy26Route
   '/programs/w3m': typeof ProgramsW3mRoute
+  '/partner': typeof PartnerIndexRoute
   '/programs': typeof ProgramsIndexRoute
 }
 export interface FileRoutesById {
@@ -157,7 +157,6 @@ export interface FileRoutesById {
   '/chapters': typeof ChaptersRoute
   '/doradao': typeof DoradaoRoute
   '/doradao-1': typeof Doradao1Route
-  '/partner': typeof PartnerRouteWithChildren
   '/past-initiatives': typeof PastInitiativesRoute
   '/voices': typeof VoicesRoute
   '/partner/corporate': typeof PartnerCorporateRoute
@@ -169,6 +168,7 @@ export interface FileRoutesById {
   '/programs/gwy-25': typeof ProgramsGwy25Route
   '/programs/gwy-26': typeof ProgramsGwy26Route
   '/programs/w3m': typeof ProgramsW3mRoute
+  '/partner/': typeof PartnerIndexRoute
   '/programs/': typeof ProgramsIndexRoute
 }
 export interface FileRouteTypes {
@@ -178,7 +178,6 @@ export interface FileRouteTypes {
     | '/chapters'
     | '/doradao'
     | '/doradao-1'
-    | '/partner'
     | '/past-initiatives'
     | '/voices'
     | '/partner/corporate'
@@ -190,6 +189,7 @@ export interface FileRouteTypes {
     | '/programs/gwy-25'
     | '/programs/gwy-26'
     | '/programs/w3m'
+    | '/partner/'
     | '/programs/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -197,7 +197,6 @@ export interface FileRouteTypes {
     | '/chapters'
     | '/doradao'
     | '/doradao-1'
-    | '/partner'
     | '/past-initiatives'
     | '/voices'
     | '/partner/corporate'
@@ -209,6 +208,7 @@ export interface FileRouteTypes {
     | '/programs/gwy-25'
     | '/programs/gwy-26'
     | '/programs/w3m'
+    | '/partner'
     | '/programs'
   id:
     | '__root__'
@@ -216,7 +216,6 @@ export interface FileRouteTypes {
     | '/chapters'
     | '/doradao'
     | '/doradao-1'
-    | '/partner'
     | '/past-initiatives'
     | '/voices'
     | '/partner/corporate'
@@ -228,6 +227,7 @@ export interface FileRouteTypes {
     | '/programs/gwy-25'
     | '/programs/gwy-26'
     | '/programs/w3m'
+    | '/partner/'
     | '/programs/'
   fileRoutesById: FileRoutesById
 }
@@ -236,14 +236,18 @@ export interface RootRouteChildren {
   ChaptersRoute: typeof ChaptersRoute
   DoradaoRoute: typeof DoradaoRoute
   Doradao1Route: typeof Doradao1Route
-  PartnerRoute: typeof PartnerRouteWithChildren
   PastInitiativesRoute: typeof PastInitiativesRoute
   VoicesRoute: typeof VoicesRoute
+  PartnerCorporateRoute: typeof PartnerCorporateRoute
+  PartnerCsrRoute: typeof PartnerCsrRoute
+  PartnerEcosystemRoute: typeof PartnerEcosystemRoute
+  PartnerVolunteerRoute: typeof PartnerVolunteerRoute
   ProgramsBuildspaceRoute: typeof ProgramsBuildspaceRoute
   ProgramsDorahacksRoute: typeof ProgramsDorahacksRoute
   ProgramsGwy25Route: typeof ProgramsGwy25Route
   ProgramsGwy26Route: typeof ProgramsGwy26Route
   ProgramsW3mRoute: typeof ProgramsW3mRoute
+  PartnerIndexRoute: typeof PartnerIndexRoute
   ProgramsIndexRoute: typeof ProgramsIndexRoute
 }
 
@@ -261,13 +265,6 @@ declare module '@tanstack/react-router' {
       path: '/past-initiatives'
       fullPath: '/past-initiatives'
       preLoaderRoute: typeof PastInitiativesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/partner': {
-      id: '/partner'
-      path: '/partner'
-      fullPath: '/partner'
-      preLoaderRoute: typeof PartnerRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/doradao-1': {
@@ -303,6 +300,13 @@ declare module '@tanstack/react-router' {
       path: '/programs'
       fullPath: '/programs/'
       preLoaderRoute: typeof ProgramsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/partner/': {
+      id: '/partner/'
+      path: '/partner'
+      fullPath: '/partner/'
+      preLoaderRoute: typeof PartnerIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/programs/w3m': {
@@ -342,65 +346,52 @@ declare module '@tanstack/react-router' {
     }
     '/partner/volunteer': {
       id: '/partner/volunteer'
-      path: '/volunteer'
+      path: '/partner/volunteer'
       fullPath: '/partner/volunteer'
       preLoaderRoute: typeof PartnerVolunteerRouteImport
-      parentRoute: typeof PartnerRoute
+      parentRoute: typeof rootRouteImport
     }
     '/partner/ecosystem': {
       id: '/partner/ecosystem'
-      path: '/ecosystem'
+      path: '/partner/ecosystem'
       fullPath: '/partner/ecosystem'
       preLoaderRoute: typeof PartnerEcosystemRouteImport
-      parentRoute: typeof PartnerRoute
+      parentRoute: typeof rootRouteImport
     }
     '/partner/csr': {
       id: '/partner/csr'
-      path: '/csr'
+      path: '/partner/csr'
       fullPath: '/partner/csr'
       preLoaderRoute: typeof PartnerCsrRouteImport
-      parentRoute: typeof PartnerRoute
+      parentRoute: typeof rootRouteImport
     }
     '/partner/corporate': {
       id: '/partner/corporate'
-      path: '/corporate'
+      path: '/partner/corporate'
       fullPath: '/partner/corporate'
       preLoaderRoute: typeof PartnerCorporateRouteImport
-      parentRoute: typeof PartnerRoute
+      parentRoute: typeof rootRouteImport
     }
   }
 }
-
-interface PartnerRouteChildren {
-  PartnerCorporateRoute: typeof PartnerCorporateRoute
-  PartnerCsrRoute: typeof PartnerCsrRoute
-  PartnerEcosystemRoute: typeof PartnerEcosystemRoute
-  PartnerVolunteerRoute: typeof PartnerVolunteerRoute
-}
-
-const PartnerRouteChildren: PartnerRouteChildren = {
-  PartnerCorporateRoute: PartnerCorporateRoute,
-  PartnerCsrRoute: PartnerCsrRoute,
-  PartnerEcosystemRoute: PartnerEcosystemRoute,
-  PartnerVolunteerRoute: PartnerVolunteerRoute,
-}
-
-const PartnerRouteWithChildren =
-  PartnerRoute._addFileChildren(PartnerRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ChaptersRoute: ChaptersRoute,
   DoradaoRoute: DoradaoRoute,
   Doradao1Route: Doradao1Route,
-  PartnerRoute: PartnerRouteWithChildren,
   PastInitiativesRoute: PastInitiativesRoute,
   VoicesRoute: VoicesRoute,
+  PartnerCorporateRoute: PartnerCorporateRoute,
+  PartnerCsrRoute: PartnerCsrRoute,
+  PartnerEcosystemRoute: PartnerEcosystemRoute,
+  PartnerVolunteerRoute: PartnerVolunteerRoute,
   ProgramsBuildspaceRoute: ProgramsBuildspaceRoute,
   ProgramsDorahacksRoute: ProgramsDorahacksRoute,
   ProgramsGwy25Route: ProgramsGwy25Route,
   ProgramsGwy26Route: ProgramsGwy26Route,
   ProgramsW3mRoute: ProgramsW3mRoute,
+  PartnerIndexRoute: PartnerIndexRoute,
   ProgramsIndexRoute: ProgramsIndexRoute,
 }
 export const routeTree = rootRouteImport

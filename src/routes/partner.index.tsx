@@ -15,7 +15,7 @@ import {
   GraduationCap,
 } from "lucide-react";
 
-export const Route = createFileRoute("/partner")({
+export const Route = createFileRoute("/partner/")({
   head: () => ({
     meta: [
       { title: "Partner with DoraDAO — Build with 40K+ curious humans" },
