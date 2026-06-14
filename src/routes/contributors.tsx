@@ -34,18 +34,18 @@ const CATEGORY_META: Record<Category, { icon: React.ComponentType<{ className?: 
 };
 
 const TASKS: Task[] = [
-  { id: "c1", title: "spotlight someone doing cool work→ feature a GWY member / builder in your network", category: "Content", difficulty: "Easy", minutes: 6, points: 5 },
+  { id: "c1", title: "spotlight someone doing cool work→ feature a GWY member / builder in your network", category: "Content", difficulty: "Easy", minutes: 10, points: 5 },
   { id: "c2", title: "create your ‘starting AI’ kit → compile tools, links, resources into 1 doc/post", category: "Content", difficulty: "Medium", minutes: 10, points: 10 },
-  { id: "c3", title: "plug into an existing ecosystem → get GWY introduced in a community (discord/slack/college club)", category: "Community", difficulty: "Easy", minutes: 3, points: 2 },
+  { id: "c3", title: "plug into an existing ecosystem → get GWY introduced in a community (discord/slack/college club)", category: "Community", difficulty: "Easy", minutes: 10, points: 2 },
   { id: "b1", title: "collab with a creator → co-create content (live, reel, thread, etc.)", category: "Build", difficulty: "Hard", minutes: 10, points: 10 },
-  { id: "b2", title: "bring 10–20 serious applicants via your network", category: "Build", difficulty: "Easy", minutes: 5, points: 5 },
-  { id: "b3", title: "create a deep-dive thread/blog on why GWY matters", category: "Build", difficulty: "Medium", minutes: 7, points: 8 },
+  { id: "b2", title: "bring 10–20 serious applicants via your network", category: "Build", difficulty: "Easy", minutes: 10, points: 5 },
+  { id: "b3", title: "create a deep-dive thread/blog on why GWY matters", category: "Build", difficulty: "Medium", minutes: 10, points: 8 },
   { id: "g1", title: "Invite 3 women builders to the fellowship", category: "Growth", difficulty: "Easy", minutes: 10, points: 5},
   { id: "g2", title: "Initiate + close 1 collaboration (community/brand)es", category: "Growth", difficulty: "Hard", minutes: 10, points: 10 },
   { id: "l1", title: "3–5 posts around a theme (your journey, GWY, AI) ", category: "Learning", difficulty: "Medium", minutes: 10, points: 10 },
-  { id: "l2", title: "go live / record yourself talking about what you're building", category: "Learning", difficulty: "Easy", minutes: 7, points: 8 },
-  { id: "m1", title: "reach out to someone you look up to → introduce GWY to a creator / org that makes sensee", category: "Community", difficulty: "Easy", minutes: 3, points: 4},
-  { id: "m2", title: "host something small but release-worthy → 30–45 min session / jam / discussionn", category: "Community", difficulty: "Medium", minutes: 2, points: 10 },
+  { id: "l2", title: "go live / record yourself talking about what you're building", category: "Learning", difficulty: "Easy", minutes: 10, points: 8 },
+  { id: "m1", title: "reach out to someone you look up to → introduce GWY to a creator / org that makes sensee", category: "Community", difficulty: "Easy", minutes: 10, points: 4},
+  { id: "m2", title: "host something small but release-worthy → 30–45 min session / jam / discussionn", category: "Community", difficulty: "Medium", minutes: 10, points: 10 },
 ];
 
 const DIFF_COLOR: Record<Difficulty, string> = { Easy: "bg-emerald-500/15 text-emerald-700", Medium: "bg-amber-500/15 text-amber-700", Hard: "bg-rose-500/15 text-rose-700" };
